@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> current;
+        vector<int> used(nums.size(), 0);
+        dfs(ans, nums, used, current);
+        return ans;
+    }
+    void dfs(vector<vector<int>>& ans, vector<int>& nums, vector<int>& used, vector<int>& current) {
+        if (current.size() == nums.size()){
+            ans.push_back(current);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (used[i] == 1) continue;
+            current.push_back(nums[i]);
+            used[i] = 1;
+            dfs(ans, nums, used, current);
+            current.pop_back();
+            used[i] = 0;
+        }
+    }
+};

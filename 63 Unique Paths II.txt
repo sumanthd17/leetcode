@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int m = obstacleGrid[0].size(), n =  obstacleGrid.size();
+        int row[m];
+        bool ob = false;
+        for(int i = 0; i < m; ++i){
+            if(obstacleGrid[0][i] == 1)
+                ob = true;
+            row[i] = ob? 0 : 1;
+        }
+  
+        for(int i = 1; i < n; ++i){
+            if(obstacleGrid[i][0] == 1)
+                row[0] = 0;
+            for(int j = 1; j < m; ++j){
+                row[j] = obstacleGrid[i][j] == 1? 0 :(row[j] + row[j-1]);
+            }
+        }
+        return  row[m-1];
+
+    }
+};
