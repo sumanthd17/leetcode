@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int as = a.size()-1, bs = b.size()-1, p=0, carry = 0;
+        int max;
+        max = as > bs?as:bs;
+        vector<char> ans;
+        while (as >= 0 || bs >= 0) {
+            int p = as >= 0 ? a[as] - '0': 0;
+            int q = bs >= 0 ? b[bs] - '0': 0;
+            
+            int sum = (p + q + carry) % 2;
+            carry = (p+q+carry)/2;
+            ans.push_back((char)'0'+sum);
+            
+            as--;
+            bs--;
+        }
+        if (carry)
+            ans.push_back((char)'0' + carry);
+        
+        reverse(ans.begin(), ans.end()); 
+        return string(ans.begin(), ans.end()); 
+    }
+};

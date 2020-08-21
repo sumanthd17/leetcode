@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        openb = ['(', '{', '[']
+        closeb = [')', '}', ']']
+        charList = []
+
+        for char in s:
+            if char in openb:
+                charList.append(char)
+            else:
+                if len(charList) == 0 or char not in closeb:
+                    return False
+                else:
+                    val = charList.pop()
+                    if closeb.index(char) != openb.index(val):
+                        return False
+
+        return len(charList) == 0

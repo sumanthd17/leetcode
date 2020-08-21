@@ -1,0 +1,22 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        val = {
+            'I': 1,
+            'V': 5,
+            'X':10,
+            'L':50,
+            'C':100,
+            'D':500,
+            'M':1000
+        }
+        num = 0
+        for i in range(len(s)):
+            idx = list(val.keys()).index(s[i])
+            nxt_idx = list(val.keys()).index(s[i+1]) if i + 1 < len(s) else -1
+            print(idx, nxt_idx)
+            if nxt_idx > idx:
+                num = num - val[s[i]]
+            elif nxt_idx <= idx:
+                num = num + val[s[i]]
+                
+        return num
