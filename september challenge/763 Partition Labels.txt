@@ -1,0 +1,18 @@
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        last = {}
+        for i, c in enumerate(S):
+            last[c] = i
+        ans = []
+        
+        i = 0
+        while i < len(S):
+            end = last[S[i]]
+            j = 0
+            while j <= end:
+                if last[S[j]] >= end:
+                    end = last[S[j]]
+                j += 1
+            ans.append(end+1-i)
+            i = end+1
+        return ans
