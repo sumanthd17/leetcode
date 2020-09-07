@@ -1,0 +1,14 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        map_ = {}
+        if len(pattern) != len(s.split()): return False
+        for i, c in enumerate(pattern):
+            if c not in map_:
+                if s.split()[i] not in map_.values():
+                    map_[c] = s.split()[i]
+                else:
+                    return False
+            else:
+                if map_[c] != s.split()[i]:
+                    return False
+        return True
