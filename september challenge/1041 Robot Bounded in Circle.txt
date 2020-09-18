@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isRobotBounded(string instructions) {
+        complex<float> i = 0, f = 0, L = 1j, R = -1j;
+        for (int i = 0; i < 4; i++) {
+            for (char c: instructions) {
+                if (c == 'G') f += 1;
+                else if (c == 'L') f *= L;
+                else if (c == 'R') f *= R;
+            }
+        }
+        return i == f;
+    }
+};
